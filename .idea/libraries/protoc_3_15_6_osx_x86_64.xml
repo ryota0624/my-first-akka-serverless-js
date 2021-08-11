@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="protoc-3.15.6-osx-x86_64">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/node_modules/@lightbend/akkaserverless-javascript-sdk/protoc/protoc-3.15.6-osx-x86_64.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

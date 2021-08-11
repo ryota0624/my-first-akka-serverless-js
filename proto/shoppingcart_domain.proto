@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+import "akkaserverless/annotations.proto";
+
+package example.shoppingcart.domain;
+
+message LineItem {
+  string productId = 1;
+  string name = 2;
+  int32 quantity = 3;
+}
+
+message ItemAdded {
+  LineItem item = 1;
+}
+
+message ItemRemoved {
+  string productId = 1;
+}
+
+message CheckedOut {}
+
+message Cart {
+  repeated LineItem items = 1;
+  bool checkedout = 2;
+}
+
+option (akkaserverless.file).event_sourced_entity = {
+  name: "ShoppingCart"
+  entity_type: "cart"
+  state: "Cart"
+  events: "ItemAdded"
+  events: "ItemRemoved"
+};

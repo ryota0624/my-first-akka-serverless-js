@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "akkaserverless/annotations.proto";
+import "shoppingcart_domain.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+
+package example.countup.actions;
+
+service ShoppingCartTriggerCountupService {
+  // get ItemAdded from the topic
+  rpc ProcessItemAdded(example.shoppingcart.domain.ItemAdded) returns (example.shoppingcart.domain.ItemAdded) {
+    option (akkaserverless.method).eventing = { 
+        in: {
+          event_sourced_entity: "cart" 
+        }
+        // out: {
+        //     topic: "item_added"
+        // }
+    };
+  }
+ rpc CatchOthers(google.protobuf.Any) returns (google.protobuf.Empty) {
+    option (akkaserverless.method).eventing.in = {
+      event_sourced_entity:  "cart"
+    };
+  }  
+}
